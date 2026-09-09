@@ -1,16 +1,14 @@
 class Solution {
     public int countDigitOne(int n) {
-        int ans=0;
-        for (int i=0;i<=n;i++){
-            int curr=i;
-            while(curr!=0){
-                int digit=curr/10;
-                if((curr%10)==1){
-                    ans+=1;
-                }
-                curr=curr/10;
-            }
+        long ans=0;
+        for(long i=1;i<=n;i*=10){
+            long a=n/(i*10);
+            long b=(n/i)%10;
+            long c=n%i;
+            if(b==0) ans+=a*i;
+            else if(b==1) ans+=a*i+c+1;
+            else ans+=(a+1)*i;
         }
-        return ans;
+        return (int)ans;
     }
 }
